@@ -1,7 +1,10 @@
+#ifndef IW4X_QCOMMON_COMMON_H_
+#define IW4X_QCOMMON_COMMON_H_
+#pragma once
+
 namespace iw4x::qcommon
 {
-    inline auto com_init(char* commandLine) -> void
-    {
-        call<void(char*)>(0x4D9640)(commandLine);
-    }
+    auto com_init(char* commandLine) -> void;
 }
+
+#endif // IW4X_QCOMMON_COMMON_H_

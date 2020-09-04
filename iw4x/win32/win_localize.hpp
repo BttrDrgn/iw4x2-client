@@ -1,13 +1,12 @@
+#ifndef IW4X_WIN32_WIN_LOCALIZE_H_
+#define IW4X_WIN32_WIN_LOCALIZE_H_
+#pragma once
+
 namespace iw4x::win32
 {
-    inline auto win_init_localization() -> char
-    {
-        return call<char(int)>(0x406D10)(0);
-    }
+    auto win_init_localization() -> char;
 
-    inline auto win_shutdown_localization() -> void
-    {
-        call<void()>(0x40C6D0)();
-        exit(1);
-    }
+    auto win_shutdown_localization() -> void;
 }
+
+#endif // IW4X_WIN32_WIN_LOCALIZE_H_

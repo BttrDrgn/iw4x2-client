@@ -19,10 +19,14 @@ project "iw4x"
   language "C++"
 
   files "../iw4x/**"
-  includedirs { "../", "../iw4x" }
+  includedirs "../iw4x"
 
   pchsource "../iw4x/iw4x.cpp"
   pchheader "iw4x.hpp"
-  forceincludes { "iw4x.hpp" }
+  forceincludes "iw4x.hpp"
+
+  vpaths { ["Header Files/*"] = "../iw4x/**.hpp" }
+  vpaths { ["Source Files/*"] = "../iw4x/**.cpp" }
+  vpaths { ["Resource Files/*"] = "../iw4x/resource/iw4x.*" }
 
   linkoptions "/NXCOMPAT:NO /IGNORE:4254 /DYNAMICBASE:NO /SAFESEH:NO /LARGEADDRESSAWARE /LAST:.main"

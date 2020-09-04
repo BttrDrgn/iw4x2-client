@@ -1,12 +1,12 @@
+#ifndef IW4X_WIN32_WIN_SYSCON_H_
+#define IW4X_WIN32_WIN_SYSCON_H_
+#pragma once
+
 namespace iw4x::win32
 {
-    inline auto sys_create_console() -> void
-    {
-        call<void()>(0x475F00)();
-    }
+    auto sys_create_console() -> void;
 
-    inline auto sys_show_console() -> void
-    {
-        call<void()>(0x4A7B10)();
-    }
+    auto sys_show_console() -> void;
 }
+
+#endif // IW4X_WIN32_WIN_SYSCON_H_

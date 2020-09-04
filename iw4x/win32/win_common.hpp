@@ -1,3 +1,7 @@
+#ifndef IW4X_WIN32_WIN_COMMON_H_
+#define IW4X_WIN32_WIN_COMMON_H_
+#pragma once
+
 namespace iw4x::win32
 {
     namespace win_common
@@ -51,18 +55,14 @@ namespace iw4x::win32
             CRITSECT_RESET_MODEL_LIGHTING = 0x2C,
             CRITSECT_COUNT = 0x2D
         };
-
-        _RTL_CRITICAL_SECTION s_criticalSection[CRITSECT_COUNT];
     }
 
-    using namespace win_common;
+    void sys_enter_critical_section_stub();
+
+    void sys_leave_critical_section_stub();
 
     // 0x0042F0A0
-    inline auto sys_initialize_critical_sections() -> void
-    {
-        for (int i = 0; i != CRITSECT_COUNT; i++)
-        {
-            InitializeCriticalSection(&s_criticalSection[i]);
-        }
-    }
+    auto sys_initialize_critical_sections() -> void;
 }
+
+#endif // IW4X_WIN32_WIN_COMMON_H_

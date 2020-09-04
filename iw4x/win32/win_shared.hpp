@@ -1,7 +1,10 @@
+#ifndef IW4X_WIN32_WIN_SHARED_H_
+#define IW4X_WIN32_WIN_SHARED_H_
+#pragma once
+
 namespace iw4x::win32
 {
-    inline auto sys_milliseconds() -> unsigned long
-    {
-        return call<unsigned long()>(0x42A660)();
-    }
+    auto sys_milliseconds() -> unsigned long;
 }
+
+#endif // IW4X_WIN32_WIN_SHARED_H_

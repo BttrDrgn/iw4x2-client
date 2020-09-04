@@ -1,59 +1,30 @@
+#ifndef IW4X_WIN32_WIN_MAIN_H_
+#define IW4X_WIN32_WIN_MAIN_H_
+#pragma once
+
 namespace iw4x::win32
 {
-    namespace win_main
-    {
-        static HWND dword_64A3AD0 = variable<HWND>(0x64A3AD0);
-        static int  dword_64A3ADC = variable<int>(0x64A3ADC);
-        static char sys_cmdline[1024]{};
-    }
+    auto sys_get_semaphore_filename() -> int;
 
-    inline auto sys_get_semaphore_filename() -> int
-    {
-        return call<int()>(0x64D200)();
-    }
+    auto sys_check_crash_or_rerun() -> int;
 
-    inline auto sys_check_crash_or_rerun() -> int
-    {
-        return call<int()>(0x411350)();
-    }
+    auto sys_find_info() -> void;
 
-    inline auto sys_find_info() -> void
-    {
-        call<void()>(0x64CF10)();
-    }
+    auto win_register_class() -> void;
 
-    inline auto win_register_class() -> void
-    {
-        return call<void()>(0x64D270)();
-    }
+    auto print_working_dir() -> void;
 
-    inline auto print_working_dir() -> void
-    {
-        call<void()>(0x64D300)();
-    }
+    auto sub_4C8E30() -> int;
 
-    inline auto sub_4C8E30() -> int
-    {
-        return call<int()>(0x4C8E30)();
-    }
+    auto sub_40BC60(char a1) -> int;
 
-    inline auto sub_40BC60(char a1) -> int
-    {
-        return call<int(char)>(0x40BC60)(a1);
-    }
+    auto sub_43EBB0() -> void;
 
-    inline auto sub_43EBB0() -> void
-    {
-        call<void()>(0x43EBB0)();
-    }
+    auto sub_4B7230() -> int;
 
-    inline auto sub_4B7230() -> void
-    {
-        call<int()>(0x4B7230)();
-    }
+    auto sub_4169C0() -> void;
 
-    inline auto sub_4169C0() -> void
-    {
-        call<void(int)>(0x4169C0)(5u);
-    }
+    auto main() -> void;
 }
+
+#endif // IW4X_WIN32_WIN_MAIN_H_

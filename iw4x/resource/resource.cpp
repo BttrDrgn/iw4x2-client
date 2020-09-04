@@ -6,7 +6,7 @@ One has to pay a price
 for breaking something
 and staying broken”
 */
-#include <resource/resource.hpp>
+#include <win32/win_main.hpp>
 
 #include <fstream>
 #include <vector>
@@ -14,6 +14,9 @@ and staying broken”
 
 #undef min
 #undef max
+
+#define BINARY_PAYLOAD_SIZE 0x20000000
+#define TLS_PAYLOAD_SIZE 0x10000
 
 #pragma comment(linker, "/base:0x400000")
 #pragma comment(linker, "/merge:.data=.cld")
@@ -216,26 +219,26 @@ auto manual_map() -> void
     std::memmove(module_nt_headers, source_nt_headers, sizeof(IMAGE_NT_HEADERS) + (module_nt_headers->FileHeader.NumberOfSections * (sizeof(IMAGE_SECTION_HEADER))));
 }
 
-auto main() -> void;
+using namespace iw4x::win32;
+
 int __stdcall WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nShowCmd)
 {
     memset(tls_data, 0, sizeof tls_data);
     manual_map();
     verify_tls();
 
-    ((PULONG_PTR)(0x006BABA1 + 1))[0] = (DWORD(main)) - (DWORD(0x006BABA1 + 5));
-    *(BYTE*)0x411350 = 0xC3;
-    *(BYTE*)0x45114C = 0xEB;
-    *(BYTE*)0x435950 = 0xC3;
-    *(BYTE*)0x49C220 = 0xC3;
-    *(BYTE*)0x4BD900 = 0xC3;
-    *(BYTE*)0x682170 = 0xC3;
-    *(BYTE*)0x48A135 = 0xC3;
-    *(BYTE*)0x48A151 = 0xC3;
-
+    memset((void*)0x411350, 0xC3, 1);
+    memset((void*)0x45114C, 0xEB, 1);
+    memset((void*)0x435950, 0xC3, 1);
+    memset((void*)0x49C220, 0xC3, 1);
+    memset((void*)0x4BD900, 0xC3, 1);
+    memset((void*)0x682170, 0xC3, 1);
+    memset((void*)0x48A135, 0xC3, 1);
+    memset((void*)0x48A151, 0xC3, 1);
     memset((void*)0x451145, 0x90, 5);
     memset((void*)0x60BB58, 0x90, 11);
     memset((void*)0x684080, 0x90, 5);
 
-    return call<int()>(0x6BAA2F)();
+    fix_function(0x6BABA1, (unsigned long)&main);
+    return call_function<int()>(0x6BAA2F)();
 }

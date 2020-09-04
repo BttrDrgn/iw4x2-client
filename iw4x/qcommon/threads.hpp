@@ -1,12 +1,12 @@
+#ifndef IW4X_QCOMMON_THREADS_H_
+#define IW4X_QCOMMON_THREADS_H_
+#pragma once
+
 namespace iw4x::qcommon
 {
-    inline auto sys_init_main_thread() -> void
-    {
-        call<void()>(0x4301B0)();
-    }
+    auto sys_init_main_thread() -> void;
 
-    inline auto sys_sleep(int msec) -> void
-    {
-        call<void(int)>(0x4169C0)(msec);
-    }
+    auto sys_sleep(int msec) -> void;
 }
+
+#endif // IW4X_QCOMMON_THREADS_H_
