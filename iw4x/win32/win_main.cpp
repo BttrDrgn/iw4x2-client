@@ -61,7 +61,7 @@ namespace iw4x::win32
         return call_function<int(char)>(0x40BC60)(a1);
     }
 
-    auto sub_43EBB0() -> void
+    auto sys_check_quit_request() -> void
     {
         call_function<void()>(0x43EBB0)();
     }
@@ -71,9 +71,9 @@ namespace iw4x::win32
         return call_function<int()>(0x4B7230)();
     }
 
-    auto sub_4169C0() -> void
+    auto sys_sleep(DWORD dwMilliseconds) -> void
     {
-        call_function<void(int)>(0x4169C0)(5u);
+        Sleep(dwMilliseconds);
     }
 
     auto main() -> void
@@ -108,9 +108,9 @@ namespace iw4x::win32
         while (true)
         {
             if (win_main::dword_64A3ADC)
-                sub_4169C0();
+                sys_sleep(5u);
 
-            sub_43EBB0();
+            sys_check_quit_request();
             sub_4B7230();
         }
     }

@@ -18,11 +18,11 @@ namespace iw4x::win32
 
     auto sub_40BC60(char a1) -> int;
 
-    auto sub_43EBB0() -> void;
+    auto sys_check_quit_request() -> void;
 
     auto sub_4B7230() -> int;
 
-    auto sub_4169C0() -> void;
+    auto sys_sleep(DWORD dwMilliseconds) -> void;
 
     auto main() -> void;
 }

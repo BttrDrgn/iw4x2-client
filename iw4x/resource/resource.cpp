@@ -240,5 +240,6 @@ int __stdcall WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdL
     memset((void*)0x684080, 0x90, 5);
 
     fix_function(0x6BABA1, (unsigned long)&main);
+    fix_function(0x4169C0, reinterpret_cast<unsigned long>(&sys_sleep));
     return call_function<int()>(0x6BAA2F)();
 }
